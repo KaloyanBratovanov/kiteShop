@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:fragment="head">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>KiteShop DB Application</title>
+    <link rel="stylesheet" href="/css/reset-css.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+<header th:fragment="navigation">
+    <nav class="navbar navbar-expand-lg bg-nav rounded">
+        <a class="nav-link" href="/home">
+            <img src="/images/logo.png" width="120px" alt="HeadPhones picture">
+        </a>
+
+        <div sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Admin Panel
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="/statistics">Statistics</a>
+                <a class="dropdown-item" href="/articles/add">Add article</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+        </div>
+
+        <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
+            <ul class="navbar-nav row">
+
+                <li class="nav-item ">
+                    <a class="nav-link text-white active h5"
+                        sec:authorize="!isAuthenticated()"
+                       th:href="@{/users/login}">Login</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-white active h5"
+                       sec:authorize="!isAuthenticated()"
+                       th:href="@{/users/register}">Register</a>
+                </li>
+
+                <li sec:authorize="isAuthenticated()" class="nav-item ">
+                    <a class="nav-link text-white active h5" href="/products/add">Add Product</a>
+                </li>
+
+                <li sec:authorize="isAuthenticated()" class="nav-item ">
+                    <a class="nav-link text-white active h5" href="/articles/all">All articles</a>
+                </li>
+
+
+                <li class="nav-item" sec:authorize="isAuthenticated()"  >
+                    <a class="nav-link text-white active h5 " th:href="@{/users/logout}">Logout</a>
+                </li>
+
+                <a class="nav-link" href="https://www.google.com/maps/place/%D0%B1%D1%83%D0%BB.+%E2%80%9E%D0%A5%D1%80%D0%B8%D1%81%D1%82%D0%BE+%D0%91%D0%BE%D1%82%D0%B5%D0%B2%E2%80%9C+5,+1606+%D0%A6%D0%B5%D0%BD%D1%82%D1%8A%D1%80,+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F/@42.6903664,23.3138449,16z/data=!4m5!3m4!1s0x40aa85147a14683b:0xe4ba1f20961d1957!8m2!3d42.6902481!4d23.3139415">
+                    <img src="/images/location.png" width="26px" alt="pin">
+                </a>
+                <a class="nav-link" href="https://www.facebook.com/">
+                    <img src="/images/facebook.png" width="26px" alt="facebook">
+                </a>
+                <a class="nav-link" href="/home">
+                    <img src="/images/handset.png" width="26px" alt="handset">
+                </a>
+
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<footer th:fragment="footer" class="footer bg-blur">
+    <div class="container-fluid text-center">
+        <div class="h5 text-white">
+            &copy;My Team 2021. All rights reserved.
+        </div>
+    </div>
+</footer>
+
+</body>
+
+
+
+
+
+</html>

@@ -1,0 +1,44 @@
+
+logging:
+  level:
+    blog: WARN
+    org: WARN
+    org.hibernate.SQL: DEBUG
+server:
+  port: 8080
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    password: 2530
+    url: jdbc:mysql://localhost:3306/kite_db?useSSL=false&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true
+    username: root
+
+  servlet:
+    multipart:
+      max-file-size: 1MB
+      max-request-size: 5MB
+
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDBDialect
+        format_sql: true
+
+
+carousel:
+  images: carouselTwo.jpg, carouselThree.jpg, carouselFive.jpeg, carouselSix.jpg, carouselFore.jpg, carouselOne.jpg
+  refresh-cron: "0 */10 * * * *"
+
+
+cloudinary:
+  cloud-name: dhhvuuujq
+  api-key: 659264121668658
+  api-secret: "${CLOUDINARY_SECRET}"
