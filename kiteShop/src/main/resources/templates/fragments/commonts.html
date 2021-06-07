@@ -37,6 +37,10 @@
         <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
             <ul class="navbar-nav row">
 
+                <li sec:authorize="!isAuthenticated()" class="nav-item ">
+                    <a class="nav-link text-white active h5" href="/home">Home</a>
+                </li>
+
                 <li class="nav-item ">
                     <a class="nav-link text-white active h5"
                         sec:authorize="!isAuthenticated()"
