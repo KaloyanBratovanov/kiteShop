@@ -40,9 +40,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void createProduct(ProductServiceModel productServiceModel) throws IOException {
 
-//        MultipartFile img3 = productServiceModel.getImgUrl2();
 
-//        String imgUrl3 = cloudinaryService.uploadImage(img3);
 
         ProductEntity productEntity = modelMapper.map(productServiceModel, ProductEntity.class);
 
@@ -58,10 +56,18 @@ public class ProductServiceImpl implements ProductService {
 
         MultipartFile img2 = productServiceModel.getImgUrl2();
 
-        String imgUrl2 = cloudinaryService.uploadImage(img2);
+            String imgUrl2 = cloudinaryService.uploadImage(img2);
+            productEntity.setImgUrl2(imgUrl2);
 
-        productEntity.setImgUrl2(imgUrl2);
-//        productEntity.setImgUrl3(imgUrl3);
+
+        MultipartFile img3 = productServiceModel.getImgUrl3();
+
+
+            String imgUrl3 = cloudinaryService.uploadImage(img3);
+            productEntity.setImgUrl3(imgUrl3);
+
+
+
 
         productRepository.save(productEntity);
     }

@@ -51,18 +51,16 @@
 <!--                           required="required">-->
                 </div>
 
+                    <div class="form-group">
+                        <label for="imgUrl3" class="font-weight-bold">Picture3</label>
+                        <input type="file" class="form-control-file" placeholder="Image Url"
+                               th:field="*{imgUrl3}"
+                               th:errorclass="is-invalid"
+                               id="imgUrl3"
+                               name="imgUrl3">
+ <!--                           required="required">-->
+                </div>
 
-<!--                <div class="form-group">-->
-<!--                    <label for="imgUrl3" class="font-weight-bold">Picture3</label>-->
-<!--                    <input type="file" class="form-control-file"-->
-<!--                           id="imgUrl3"-->
-<!--                           name="imgUrl3">-->
-<!--&lt;!&ndash;                           required="required">&ndash;&gt;-->
-<!--                </div>-->
-<!--                <hr class="hr-2 bg-dark w-25">-->
-<!--                <div class="button-holder d-flex justify-content-center">-->
-<!--                    <button type="submit" class="btn btn-success" th:action="@{products/add}" th:method="POST">Add</button>-->
-<!--                </div>-->
 
             </div>
             <div class="form-row m-5">

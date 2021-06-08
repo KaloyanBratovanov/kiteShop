@@ -37,7 +37,7 @@
         <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
             <ul class="navbar-nav row">
 
-                <li sec:authorize="!isAuthenticated()" class="nav-item ">
+                <li  class="nav-item ">
                     <a class="nav-link text-white active h5" href="/home">Home</a>
                 </li>
 
@@ -55,10 +55,6 @@
 
                 <li sec:authorize="isAuthenticated()" class="nav-item ">
                     <a class="nav-link text-white active h5" href="/products/add">Add Product</a>
-                </li>
-
-                <li sec:authorize="isAuthenticated()" class="nav-item ">
-                    <a class="nav-link text-white active h5" href="/articles/all">All articles</a>
                 </li>
 
 

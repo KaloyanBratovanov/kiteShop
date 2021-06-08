@@ -7,12 +7,13 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Table(name="products")
 public class ProductEntity extends BaseEntity {
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
     @Column(nullable = false)
     private String imageUrl;
@@ -35,6 +36,8 @@ public class ProductEntity extends BaseEntity {
     private BrandEntity brandEntity;
     @ManyToOne
     private UserEntity userEntity;
+    @OneToMany(mappedBy = "productEntity",targetEntity = LogEntity.class,  fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<LogEntity> logs;
 
     public ProductEntity() {
     }
@@ -136,6 +139,15 @@ public class ProductEntity extends BaseEntity {
 
     public ProductEntity setUserEntity(UserEntity userEntity) {
         this.userEntity = userEntity;
+        return this;
+    }
+
+    public Set<LogEntity> getLogs() {
+        return logs;
+    }
+
+    public ProductEntity setLogs(Set<LogEntity> logs) {
+        this.logs = logs;
         return this;
     }
 }
