@@ -1,6 +1,7 @@
 package project.kiteshop.service;
 
 import org.springframework.stereotype.Service;
+import project.kiteshop.models.binding.ProductUpdateBindingModel;
 import project.kiteshop.models.entities.ProductEntity;
 import project.kiteshop.models.service.ProductServiceModel;
 import project.kiteshop.models.view.ProductCardViewModel;
@@ -21,4 +22,9 @@ public interface ProductService {
     ProductEntity findEntityById(Long productId);
 
     void deleteById(Long id);
+
+    ProductUpdateBindingModel findByIdBindingModel(Long id);
+
+    void updateProduct(ProductServiceModel productServiceModel) throws IOException;
+
 }

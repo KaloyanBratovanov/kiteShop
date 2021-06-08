@@ -9,6 +9,7 @@ import java.time.LocalDate;
 
 public class ProductServiceModel {
 
+    private Long id;
     private String name;
     private String imageUrl;
     private MultipartFile imgUrl2;
@@ -22,6 +23,15 @@ public class ProductServiceModel {
     private String user;
 
     public ProductServiceModel() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public ProductServiceModel setId(Long id) {
+        this.id = id;
+        return this;
     }
 
     public String getName() {

@@ -3,6 +3,7 @@ package project.kiteshop.service.impl;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import project.kiteshop.models.binding.ProductUpdateBindingModel;
 import project.kiteshop.models.entities.BrandEntity;
 import project.kiteshop.models.entities.ProductEntity;
 import project.kiteshop.models.entities.UserEntity;
@@ -107,5 +108,52 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void deleteById(Long id) {
         productRepository.deleteById(id);
+    }
+
+    @Override
+    public ProductUpdateBindingModel findByIdBindingModel(Long id) {
+
+
+        return  productRepository.findById(id).
+                map(productEntity -> {
+                    ProductUpdateBindingModel productUpdateBindingModel = modelMapper
+                            .map(productEntity, ProductUpdateBindingModel.class);
+                    productUpdateBindingModel.setBrand(productEntity.getBrandEntity().getName());
+                    return productUpdateBindingModel;
+
+                }).orElseThrow(IllegalArgumentException::new);
+    }
+
+    @Override
+    public void updateProduct(ProductServiceModel productServiceModel) throws IOException {
+
+        ProductEntity productEntity = modelMapper.map(productServiceModel, ProductEntity.class);
+
+        UserEntity creator =userRepository.findByUsername(productServiceModel.getUser())
+                .orElseThrow(() -> new IllegalArgumentException("Creator "+ productServiceModel.getUser()
+                        +" could not by found"));
+
+        productEntity.setName(productServiceModel.getName());
+        productEntity.setImageUrl(productServiceModel.getImageUrl());
+        productEntity.setVideoUrl(productServiceModel.getVideoUrl());
+        productEntity.setDescription(productServiceModel.getDescription());
+        productEntity.setPrice(productServiceModel.getPrice());
+        productEntity.setUserEntity(creator);
+        productEntity.setReleaseDate(productServiceModel.getReleaseDate());
+        productEntity.setBrandEntity(brandService.findByName(productServiceModel.getBrand()));
+
+        MultipartFile img2 = productServiceModel.getImgUrl2();
+
+        String imgUrl2 = cloudinaryService.uploadImage(img2);
+        productEntity.setImgUrl2(imgUrl2);
+
+
+        MultipartFile img3 = productServiceModel.getImgUrl3();
+
+        String imgUrl3 = cloudinaryService.uploadImage(img3);
+        productEntity.setImgUrl3(imgUrl3);
+
+        productRepository.deleteById(productServiceModel.getId());
+        productRepository.saveAndFlush(productEntity);
     }
 }

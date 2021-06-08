@@ -1,33 +1,46 @@
-package project.kiteshop.models.view;
+package project.kiteshop.models.binding;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 import project.kiteshop.models.entities.enums.Type;
 
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class ProductVewModel {
+public class ProductUpdateBindingModel {
 
     private Long id;
+    @Size(min = 3, max = 20)
     private String name;
+    @Size(min = 5)
     private String imageUrl;
     private MultipartFile imgUrl2;
     private MultipartFile imgUrl3;
     private String videoUrl;
+    @Size(min = 5)
     private String description;
+    @DecimalMin(value = "0")
     private BigDecimal price;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate releaseDate;
+    @NotNull
     private Type type;
+    @NotNull
     private String brand;
 
-    public ProductVewModel() {
+
+    public ProductUpdateBindingModel() {
     }
+
 
     public Long getId() {
         return id;
     }
 
-    public ProductVewModel setId(Long id) {
+    public ProductUpdateBindingModel setId(Long id) {
         this.id = id;
         return this;
     }
@@ -36,7 +49,7 @@ public class ProductVewModel {
         return name;
     }
 
-    public ProductVewModel setName(String name) {
+    public ProductUpdateBindingModel setName(String name) {
         this.name = name;
         return this;
     }
@@ -45,7 +58,7 @@ public class ProductVewModel {
         return imageUrl;
     }
 
-    public ProductVewModel setImageUrl(String imageUrl) {
+    public ProductUpdateBindingModel setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
         return this;
     }
@@ -54,7 +67,7 @@ public class ProductVewModel {
         return imgUrl2;
     }
 
-    public ProductVewModel setImgUrl2(MultipartFile imgUrl2) {
+    public ProductUpdateBindingModel setImgUrl2(MultipartFile imgUrl2) {
         this.imgUrl2 = imgUrl2;
         return this;
     }
@@ -63,7 +76,7 @@ public class ProductVewModel {
         return imgUrl3;
     }
 
-    public ProductVewModel setImgUrl3(MultipartFile imgUrl3) {
+    public ProductUpdateBindingModel setImgUrl3(MultipartFile imgUrl3) {
         this.imgUrl3 = imgUrl3;
         return this;
     }
@@ -72,7 +85,7 @@ public class ProductVewModel {
         return videoUrl;
     }
 
-    public ProductVewModel setVideoUrl(String videoUrl) {
+    public ProductUpdateBindingModel setVideoUrl(String videoUrl) {
         this.videoUrl = videoUrl;
         return this;
     }
@@ -81,7 +94,7 @@ public class ProductVewModel {
         return description;
     }
 
-    public ProductVewModel setDescription(String description) {
+    public ProductUpdateBindingModel setDescription(String description) {
         this.description = description;
         return this;
     }
@@ -90,7 +103,7 @@ public class ProductVewModel {
         return price;
     }
 
-    public ProductVewModel setPrice(BigDecimal price) {
+    public ProductUpdateBindingModel setPrice(BigDecimal price) {
         this.price = price;
         return this;
     }
@@ -99,7 +112,7 @@ public class ProductVewModel {
         return releaseDate;
     }
 
-    public ProductVewModel setReleaseDate(LocalDate releaseDate) {
+    public ProductUpdateBindingModel setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
         return this;
     }
@@ -108,7 +121,7 @@ public class ProductVewModel {
         return type;
     }
 
-    public ProductVewModel setType(Type type) {
+    public ProductUpdateBindingModel setType(Type type) {
         this.type = type;
         return this;
     }
@@ -117,7 +130,7 @@ public class ProductVewModel {
         return brand;
     }
 
-    public ProductVewModel setBrand(String brand) {
+    public ProductUpdateBindingModel setBrand(String brand) {
         this.brand = brand;
         return this;
     }
