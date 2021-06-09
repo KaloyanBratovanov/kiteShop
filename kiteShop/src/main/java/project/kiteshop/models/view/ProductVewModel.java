@@ -11,8 +11,8 @@ public class ProductVewModel {
     private Long id;
     private String name;
     private String imageUrl;
-    private MultipartFile imgUrl2;
-    private MultipartFile imgUrl3;
+    private String imgUrl2;
+    private String imgUrl3;
     private String videoUrl;
     private String description;
     private BigDecimal price;
@@ -50,20 +50,21 @@ public class ProductVewModel {
         return this;
     }
 
-    public MultipartFile getImgUrl2() {
+
+    public String getImgUrl2() {
         return imgUrl2;
     }
 
-    public ProductVewModel setImgUrl2(MultipartFile imgUrl2) {
+    public ProductVewModel setImgUrl2(String imgUrl2) {
         this.imgUrl2 = imgUrl2;
         return this;
     }
 
-    public MultipartFile getImgUrl3() {
+    public String getImgUrl3() {
         return imgUrl3;
     }
 
-    public ProductVewModel setImgUrl3(MultipartFile imgUrl3) {
+    public ProductVewModel setImgUrl3(String imgUrl3) {
         this.imgUrl3 = imgUrl3;
         return this;
     }
