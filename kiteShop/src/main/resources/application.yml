@@ -44,4 +44,4 @@ cloudinary:
   api-secret: "${CLOUDINARY_SECRET}"
 
 logs:
-    refresh-cron: "2 15 * * * *"
+    refresh-cron: "0 08 15 * * *"
