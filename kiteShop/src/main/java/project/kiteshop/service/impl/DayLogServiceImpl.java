@@ -1,0 +1,56 @@
+package project.kiteshop.service.impl;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Service;
+import project.kiteshop.models.entities.DayLogEntity;
+import project.kiteshop.repository.DayLogRepository;
+import project.kiteshop.repository.LogRepository;
+import project.kiteshop.service.DayLogService;
+import project.kiteshop.service.LogService;
+
+import java.time.LocalDate;
+import java.util.List;
+
+@Service
+public class DayLogServiceImpl implements DayLogService {
+
+    private Logger LOGGER = LoggerFactory.getLogger(DayLogServiceImpl.class);
+
+    private final LogRepository logRepository;
+    private final DayLogRepository dayLogRepository;
+    private final LogService logService;
+
+    public DayLogServiceImpl(LogRepository logRepository, DayLogRepository dayLogRepository, LogService logService) {
+        this.logRepository = logRepository;
+        this.dayLogRepository = dayLogRepository;
+        this.logService = logService;
+    }
+
+
+    @Override
+    @Scheduled(cron = "${logs.refresh-cron}")
+    public void createDayLog() {
+
+        LOGGER.info("Create DayLog  ...");
+
+        int countOfLogs= logService.findAllLogs().size();
+
+        DayLogEntity dayLogEntity = new DayLogEntity();
+
+        dayLogEntity.setLocalDate(LocalDate.now());
+        dayLogEntity.setNumber(countOfLogs);
+
+        logRepository.deleteAll();
+        dayLogRepository.save(dayLogEntity);
+
+    }
+
+    @Override
+    public List<Integer> findFirstSeven() {
+
+        return dayLogRepository.findFirstSeven();
+
+    }
+}

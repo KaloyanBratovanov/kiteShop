@@ -42,3 +42,6 @@ cloudinary:
   cloud-name: dhhvuuujq
   api-key: 659264121668658
   api-secret: "${CLOUDINARY_SECRET}"
+
+logs:
+    refresh-cron: "2 15 * * * *"

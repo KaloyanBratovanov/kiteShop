@@ -27,5 +27,4 @@ public class ApplicationConfig {
         return new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
     }
 
-
 }
