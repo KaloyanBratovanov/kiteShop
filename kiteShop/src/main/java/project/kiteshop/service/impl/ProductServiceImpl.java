@@ -156,4 +156,9 @@ public class ProductServiceImpl implements ProductService {
         productRepository.deleteById(productServiceModel.getId());
         productRepository.saveAndFlush(productEntity);
     }
+
+    @Override
+    public ProductEntity findProductEntityById(Long id) {
+        return productRepository.findById(id).orElse(null);
+    }
 }

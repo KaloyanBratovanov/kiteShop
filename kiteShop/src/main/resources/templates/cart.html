@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/commonts :: head"></head>
+
+<body>
+<header th:replace="fragments/commonts :: navigation"></header>
+
+<main class="p-5 align-content-center bg-blur">
+
+    <div class="container-fluid">
+        <div class="row">
+
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4"><div class="chartjs-size-monitor" style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+
+                <h2 class="text-light">Your cart</h2>
+                <div class="table-responsive text-light">
+                    <table class="table table-striped table-sm">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Date Time</th>
+                            <th>Action</th>
+                            <th>Product Title</th>
+                            <th>User</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="p : ${products}" th:object="${p}">
+                            <td th:text="*{id}">1,001</td>
+                            <td th:text="*{dateTime}">1,001</td>
+                            <td th:text="*{action}">Lorem</td>
+                            <td th:text="*{product}">ipsum</td>
+                            <td th:text="*{user}">dolor</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+</main>
+<footer th:replace="fragments/commonts :: footer" class="footer bg-blur"></footer>
+
+</body>
+
+
+</html>

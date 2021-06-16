@@ -48,7 +48,7 @@
     <div class="row mt-5" id="productsList">
         <!-- Start single product -->
         <div th:each="product : ${allProducts}" th:object="${product}" class="col-md-3">
-            <a th:href="@{/products/details/{id}(id = *{id})}">
+            <a th:href="@{/details/{id}(id = *{id})}">
             <div class="card mb-4 box-shadow">
                 <img th:src="*{imageUrl}" class="card-img-top" alt="Thumbnail [100%x225]"
                      data-holder-rendered="true"

@@ -75,15 +75,7 @@ public class ProductController {
     }
 
 
-    @GetMapping("/details/{id}")
-    public String details(@PathVariable Long id, Model model){
 
-        ProductVewModel productVewModel = productService.findById(id);
-
-        model.addAttribute("product", productVewModel);
-
-        return "details";
-    }
 
     @GetMapping("/delete/{id}")
     public String deleteById(@PathVariable Long id){
