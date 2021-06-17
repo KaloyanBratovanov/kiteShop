@@ -28,10 +28,10 @@
                         <tbody>
                         <tr th:each="p : ${products}" th:object="${p}">
                             <td th:text="*{id}">1,001</td>
-                            <td th:text="*{dateTime}">1,001</td>
-                            <td th:text="*{action}">Lorem</td>
-                            <td th:text="*{product}">ipsum</td>
-                            <td th:text="*{user}">dolor</td>
+                            <td th:text="*{name}">name</td>
+                            <td th:text="*{type}">type</td>
+                            <td th:text="*{brand}">brand</td>
+                            <td th:text="*{price}">dolor</td>
                         </tr>
                         </tbody>
                     </table>
@@ -43,6 +43,5 @@
 <footer th:replace="fragments/commonts :: footer" class="footer bg-blur"></footer>
 
 </body>
-
 
 </html>
