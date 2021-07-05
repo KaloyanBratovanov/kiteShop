@@ -1,26 +1,24 @@
 package project.kiteshop.service.impl;
 
-import org.apache.commons.collections.list.PredicatedList;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-import project.kiteshop.models.binding.ProductUpdateBindingModel;
 import project.kiteshop.models.entities.CartEntity;
-import project.kiteshop.models.entities.ProductEntity;
 import project.kiteshop.models.entities.UserEntity;
-import project.kiteshop.models.view.ProductCardViewModel;
 import project.kiteshop.models.view.ProductVewModel;
 import project.kiteshop.repository.CartRepository;
 import project.kiteshop.service.CartService;
 import project.kiteshop.service.ProductService;
 import project.kiteshop.service.UserService;
 
+import java.math.BigDecimal;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class CartServiceImpl implements CartService {
+
+   protected BigDecimal totalSum = new BigDecimal("0") ;
 
    private final CartRepository cartRepository;
    private final ProductService productService;
@@ -66,10 +64,19 @@ public class CartServiceImpl implements CartService {
 
             productVewModels.add(productVewModel);
 
+            totalSum = totalSum.add(productVewModel.getPrice());
+
         }
+
+
 
         return productVewModels;
 
+    }
 
+    @Override
+    public BigDecimal findTotalSum() {
+
+        return totalSum;
     }
 }

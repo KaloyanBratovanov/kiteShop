@@ -3,6 +3,7 @@ package project.kiteshop.web;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import project.kiteshop.service.CartService;
 
@@ -24,7 +25,8 @@ public class CartController {
     public String stats(Model model, Principal principal){
 
         model.addAttribute("products", cartService.findAllProductsInMyCart(principal));
-
+        model.addAttribute("totalSum", cartService.findTotalSum());
         return "cart";
     }
+
 }

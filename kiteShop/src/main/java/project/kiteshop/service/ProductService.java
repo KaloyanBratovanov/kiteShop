@@ -29,5 +29,4 @@ public interface ProductService {
 
     ProductEntity findProductEntityById(Long id);
 
-
 }

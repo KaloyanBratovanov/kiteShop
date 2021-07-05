@@ -1,8 +1,8 @@
 package project.kiteshop.service;
 
-import project.kiteshop.models.view.ProductCardViewModel;
 import project.kiteshop.models.view.ProductVewModel;
 
+import java.math.BigDecimal;
 import java.security.Principal;
 import java.util.List;
 
@@ -12,4 +12,6 @@ public interface CartService {
 
 
     List<ProductVewModel> findAllProductsInMyCart(Principal principal);
+
+    BigDecimal findTotalSum();
 }

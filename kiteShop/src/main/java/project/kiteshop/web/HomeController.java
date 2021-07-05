@@ -32,6 +32,6 @@ public class HomeController {
 
         model.addAttribute("allProducts", productService.findAll());
 
-        return "/home";
+        return "home";
     }
 }

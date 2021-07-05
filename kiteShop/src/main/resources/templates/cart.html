@@ -18,22 +18,38 @@
                     <table class="table table-striped table-sm">
                         <thead>
                         <tr>
-                            <th>Id</th>
-                            <th>Date Time</th>
-                            <th>Action</th>
-                            <th>Product Title</th>
-                            <th>User</th>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Brand</th>
+                            <th>Price</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each="p : ${products}" th:object="${p}">
-                            <td th:text="*{id}">1,001</td>
+
+                            <td class="card-img" th:class="15">
+                                <img alt="image" th:src="*{imageUrl}" class="w-15 rounded" width="50">
+                            </td>
                             <td th:text="*{name}">name</td>
                             <td th:text="*{type}">type</td>
                             <td th:text="*{brand}">brand</td>
                             <td th:text="*{price}">dolor</td>
                         </tr>
+                        <table class="table table-striped table-sm">
+                            <thead>
+
+                            <tr>
+                                <th>Total</th>
+<!--                                <th>Total</th>-->
+                                <th>
+<!--                                    <a href="/products/buy/all" class="btn btn-danger" th:text="|Buy all products for ${totalSum} br|"></a>-->
+                                    <button  class="btn btn-primary btn-block"  type="submit" th:text="|Buy all products for ${totalSum}|">All</button>
+                                </th>
+                            </tr>
+                            </thead>
                         </tbody>
+                      </table>
                     </table>
                 </div>
             </main>
