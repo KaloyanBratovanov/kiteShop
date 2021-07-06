@@ -18,7 +18,6 @@ import java.util.List;
 @Service
 public class CartServiceImpl implements CartService {
 
-   protected BigDecimal totalSum = new BigDecimal("0") ;
 
    private final CartRepository cartRepository;
    private final ProductService productService;
@@ -63,20 +62,11 @@ public class CartServiceImpl implements CartService {
             ProductVewModel productVewModel = productService.findById(cartEntity.getProductEntity().getId());
 
             productVewModels.add(productVewModel);
-
-            totalSum = totalSum.add(productVewModel.getPrice());
-
         }
 
 
 
         return productVewModels;
 
-    }
-
-    @Override
-    public BigDecimal findTotalSum() {
-
-        return totalSum;
     }
 }

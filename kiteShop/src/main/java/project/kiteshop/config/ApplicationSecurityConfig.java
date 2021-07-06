@@ -48,7 +48,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 // the name of the user password input field in OUR login form is password (optional)
                 .passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY)
                 // if success redirect here;
-                .defaultSuccessUrl("/home")
+                .defaultSuccessUrl("/")
                 // if not success redirect here;
                 .failureForwardUrl("/users/login-error")
                 // which endpoints performs logout, e.g. http://localhost:8080/loout(!this shut bi POST request)

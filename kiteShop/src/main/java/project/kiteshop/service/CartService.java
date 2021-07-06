@@ -13,5 +13,4 @@ public interface CartService {
 
     List<ProductVewModel> findAllProductsInMyCart(Principal principal);
 
-    BigDecimal findTotalSum();
 }
