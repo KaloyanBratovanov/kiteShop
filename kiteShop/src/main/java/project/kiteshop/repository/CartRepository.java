@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 import project.kiteshop.models.entities.CartEntity;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface CartRepository extends JpaRepository<CartEntity, Long> {

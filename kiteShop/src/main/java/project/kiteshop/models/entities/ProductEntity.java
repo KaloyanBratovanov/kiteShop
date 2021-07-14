@@ -39,8 +39,10 @@ public class ProductEntity extends BaseEntity {
     @OneToMany(mappedBy = "productEntity",targetEntity = LogEntity.class,  fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<LogEntity> logs;
 
-    @OneToMany
-    private Set<CartEntity> cartEntities;
+
+    // TODO: 7/14/2021
+//    @OneToMany(mappedBy = "productEntity",targetEntity = CartEntity.class,  fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    private Set<CartEntity> cartEntities;
 
     public ProductEntity() {
     }
@@ -154,12 +156,5 @@ public class ProductEntity extends BaseEntity {
         return this;
     }
 
-    public Set<CartEntity> getCartEntities() {
-        return cartEntities;
-    }
 
-    public ProductEntity setCartEntities(Set<CartEntity> cartEntities) {
-        this.cartEntities = cartEntities;
-        return this;
-    }
 }

@@ -1,20 +1,74 @@
 package project.kiteshop.models.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import project.kiteshop.models.entities.enums.Type;
+
+import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "carts")
 public class CartEntity extends BaseEntity{
 
+    @Column(nullable = false)
+    private String imageUrl;
+    @Column(nullable = false)
+    private String name;
+    @Enumerated(EnumType.STRING)
+    private Type type;
+    @ManyToOne
+    private BrandEntity brandEntity;
+    @Column(nullable = false)
+    private BigDecimal price;
 
     @ManyToOne
     private UserEntity userEntity;
-    @ManyToOne
-    private ProductEntity productEntity;
 
     public CartEntity() {
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public CartEntity setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+        return this;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public CartEntity setName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public CartEntity setType(Type type) {
+        this.type = type;
+        return this;
+    }
+
+    public BrandEntity getBrandEntity() {
+        return brandEntity;
+    }
+
+    public CartEntity setBrandEntity(BrandEntity brandEntity) {
+        this.brandEntity = brandEntity;
+        return this;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public CartEntity setPrice(BigDecimal price) {
+        this.price = price;
+        return this;
     }
 
     public UserEntity getUserEntity() {
@@ -26,12 +80,4 @@ public class CartEntity extends BaseEntity{
         return this;
     }
 
-    public ProductEntity getProductEntity() {
-        return productEntity;
-    }
-
-    public CartEntity setProductEntity(ProductEntity productEntity) {
-        this.productEntity = productEntity;
-        return this;
-    }
 }

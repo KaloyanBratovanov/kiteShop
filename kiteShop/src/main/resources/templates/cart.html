@@ -37,22 +37,26 @@
                             <td th:text="*{brand}">brand</td>
                             <td th:text="*{price}">dolor</td>
                             <td>
-                                <button type="button" class="btn btn-primary">Buy</button>
+                                <a class="ml-3 text-blue" th:href="@{/carts/buy/{id}(id = *{id})}">Buy</a>
                             </td>
 
                         </tr>
+
                         <table class="table table-striped table-sm">
+
                             <thead>
 
                             <tr>
                                 <th>Total</th>
                                 <th>
-                                    <button  class="btn btn-primary btn-block"  type="submit" th:text="|Buy all products for ${totalSum}|">All</button>
+                                    <a href="/carts/buy/all" class="btn btn-blue" th:text="|Buy all products for ${totalSum} lv|"></a>
                                 </th>
                             </tr>
                             </thead>
                         </tbody>
+
                       </table>
+
                     </table>
                 </div>
             </main>

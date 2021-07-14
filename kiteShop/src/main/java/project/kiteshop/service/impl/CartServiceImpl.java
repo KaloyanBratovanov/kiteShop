@@ -3,17 +3,19 @@ package project.kiteshop.service.impl;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import project.kiteshop.models.entities.CartEntity;
+import project.kiteshop.models.entities.ProductEntity;
 import project.kiteshop.models.entities.UserEntity;
+import project.kiteshop.models.view.CartVewModel;
 import project.kiteshop.models.view.ProductVewModel;
 import project.kiteshop.repository.CartRepository;
 import project.kiteshop.service.CartService;
 import project.kiteshop.service.ProductService;
 import project.kiteshop.service.UserService;
 
-import java.math.BigDecimal;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CartServiceImpl implements CartService {
@@ -41,32 +43,44 @@ public class CartServiceImpl implements CartService {
         UserEntity userEntity = userService
                 .findByName(principal.getName());
 
-        cartEntity.setProductEntity(productService.findProductEntityById(id));
+        ProductEntity productEntity = new ProductEntity();
+
+        productEntity = productService.findProductEntityById(id);
+
+        cartEntity.setImageUrl(productEntity.getImageUrl());
+        cartEntity.setName(productEntity.getName());
+        cartEntity.setPrice(productEntity.getPrice());
+        cartEntity.setType(productEntity.getType());
         cartEntity.setUserEntity(userEntity);
+        cartEntity.setBrandEntity(productEntity.getBrandEntity());
+
 
         cartRepository.save(cartEntity);
     }
 
     @Override
-    public List<ProductVewModel> findAllProductsInMyCart(Principal principal) {
+    public List<CartVewModel> findAllProductsInMyCart(Principal principal) {
 
         UserEntity userEntity = userService
                 .findByName(principal.getName());
 
-        List<CartEntity> cartEntities = cartRepository.findAllByUserEntityId(userEntity.getId());
-
-        List<ProductVewModel> productVewModels = new ArrayList<>();
-
-        for (CartEntity cartEntity : cartEntities) {
-
-            ProductVewModel productVewModel = productService.findById(cartEntity.getProductEntity().getId());
-
-            productVewModels.add(productVewModel);
-        }
+        return cartRepository.findAllByUserEntityId(userEntity.getId())
+                .stream().map(cartEntity -> {
+                    CartVewModel cartVewModel = modelMapper.map(cartEntity, CartVewModel.class);
+                    cartVewModel.setBrand(cartEntity.getBrandEntity().getName());
+                    return cartVewModel;
+                }).collect(Collectors.toList());
 
 
+    }
 
-        return productVewModels;
+    @Override
+    public void buyById(Long id) {
+        cartRepository.deleteById(id);
+    }
 
+    @Override
+    public void buyAll() {
+        cartRepository.deleteAll();
     }
 }
