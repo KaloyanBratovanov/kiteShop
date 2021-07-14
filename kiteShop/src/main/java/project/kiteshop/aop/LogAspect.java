@@ -17,7 +17,7 @@ public class LogAspect {
         this.logService = logService;
     }
 
-    @Pointcut("execution(* project.kiteshop.web.ProductController.details(..))")
+    @Pointcut("execution(* project.kiteshop.web.DetailsController.details(..))")
     public void detailsPointcut(){
 
     }

@@ -46,10 +46,6 @@ public class StatsController {
         model.addAttribute("sixth", sixth);
         model.addAttribute("seventh", seventh);
 
-
-
-
-
         return "stats";
     }
 }

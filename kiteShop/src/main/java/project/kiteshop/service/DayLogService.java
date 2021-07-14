@@ -8,4 +8,6 @@ public interface DayLogService {
 
     List<Integer> findFirstSeven();
 
+    void seedDayLog();
+
 }

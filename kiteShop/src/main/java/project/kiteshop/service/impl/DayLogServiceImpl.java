@@ -53,4 +53,34 @@ public class DayLogServiceImpl implements DayLogService {
         return dayLogRepository.findFirstSeven();
 
     }
+
+    @Override
+    public void seedDayLog() {
+        if (dayLogRepository.count() == 0){
+
+            DayLogEntity first = createZeroDeyLog();
+            DayLogEntity second = createZeroDeyLog();
+            DayLogEntity third = createZeroDeyLog();
+            DayLogEntity fore = createZeroDeyLog();
+            DayLogEntity five = createZeroDeyLog();
+            DayLogEntity six = createZeroDeyLog();
+            DayLogEntity seven = createZeroDeyLog();
+
+
+            dayLogRepository.saveAll(List.of(first, second, third, fore, five, six, seven));
+        }
+
+
+
+    }
+
+    private DayLogEntity createZeroDeyLog() {
+
+        DayLogEntity dayLogEntity = new DayLogEntity();
+
+        dayLogEntity.setNumber(0);
+        dayLogEntity.setLocalDate(LocalDate.now());
+
+        return dayLogEntity;
+    }
 }
